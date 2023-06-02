@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projectfinal/managers/assets.dart';
 
+import 'home_page.dart';
+
 class SingleProduct extends StatelessWidget {
   const SingleProduct({Key? key}) : super(key: key);
 
@@ -8,25 +10,17 @@ class SingleProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      drawer: Drawer(),
       appBar: AppBar(
         actions: [
-          Image.asset( width: 100,
+          IconButton(onPressed: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: (c)=>HomePage()));
+          }, icon:Icon(Icons.arrow_back) , padding: EdgeInsets.only(right: 250)),
+          Image.asset(
+            width: 100,
             AssetsManager.logo,
             color: Colors.white,
-          ),
+          )
         ],
-        leading: Builder(builder: (context) {
-          return IconButton(
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-            icon: Icon(
-              Icons.menu,
-              color: Colors.white,
-            ),
-          );
-        }),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),

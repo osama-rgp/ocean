@@ -2,6 +2,7 @@ import 'package:projectfinal/log_in.dart';
 import 'package:flutter/material.dart';
 import 'package:projectfinal/managers/colors.dart';
 
+import 'managers/home_page.dart';
 import 'managers/single_product.dart';
 
 void main(){
