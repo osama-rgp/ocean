@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projectfinal/managers/assets.dart';
 
-import 'home_page.dart';
+import 'features/home_page/home_page.dart';
 
 class SingleProduct extends StatelessWidget {
   const SingleProduct({Key? key}) : super(key: key);

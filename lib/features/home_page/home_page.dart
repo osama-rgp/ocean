@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:projectfinal/features/home_page/home_page_component.dart';
 import 'package:projectfinal/managers/assets.dart';
 
-import '../log_in.dart';
+import '../../core/models/product_model.dart';
+import '../login/log_in.dart';
+import '../login/login_remote_data_source.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  bool _loading = false;
+  final RemoteDataSource remoteDataSource = RemoteDataSource();
+
 
   @override
   Widget build(BuildContext context) {
@@ -218,7 +230,6 @@ class HomePage extends StatelessWidget {
           ],
         ),
         body: SizedBox(
-
           height: MediaQuery.of(context).size.height,
           child: Column(
             children: [
@@ -236,7 +247,7 @@ class HomePage extends StatelessWidget {
                           contentPadding: EdgeInsets.all(4),
                           hintTextDirection: TextDirection.rtl,
                           hintText: " البحث  ",
-                          hintStyle: TextStyle(
+                          hintStyle: const TextStyle(
                             color: Color(0xff000000),
                             fontSize: 16,
                           ),
@@ -246,81 +257,28 @@ class HomePage extends StatelessWidget {
                   )
                 ],
               ),
-              Expanded(
-                child: SizedBox(
-                  child: ListView.builder(
-                      itemBuilder: (context, index) => Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
-                              child: SizedBox(
-                                width: 700,
-                                child: Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    SizedBox(
-                                      width: double.infinity,
-                                      height: 200,
-                                      child: Image.network(
-                                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO-hlLa1mnf2V1p__dFMxkNjf44wHphOxH2g&usqp=CAU",
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                    Column(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.end,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: const [
-                                              Text(
-                                                "أسمنت أبيض",
-                                                style: TextStyle(
-                                                    color: Colors.white),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            children: [
-                                              Text(
-                                                "#الصنف",
-                                                style: TextStyle(
-                                                    color: Colors.white),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.start,
-
-                                            children: [
-                                              Text(
-                                                "50000",
-                                                style: TextStyle(
-                                                    color: Colors.green,fontSize: 25),
-                                              ),
-                                            ],
-                                          ),
-                                        )
-
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
+              FutureBuilder<List<ProductModel>>(
+                future:remoteDataSource.getAllProduct() ,
+                builder: (context,snapshot) {
+                  if(snapshot.connectionState == ConnectionState.waiting){
+                    return const CircularProgressIndicator(
+                      color: Colors.brown,
+                    );
+                  }
+                  else if(snapshot.data?.isNotEmpty??false) {
+                    return Expanded(
+                    child: SizedBox(
+                      child: ListView.builder(
+                        itemCount: snapshot.data!.length,
+                          itemBuilder: (context, index) =>  HomePageComponet(
+                            product: snapshot.data![index],
                           )),
-                ),
+                    ),
+                  );
+                  }else {
+                    return const Text("There is not product");
+                  }
+                }
               )
             ],
           ),
