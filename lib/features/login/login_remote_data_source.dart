@@ -2,6 +2,8 @@ import 'package:projectfinal/core/models/product_model.dart';
 import 'package:projectfinal/core/server/api.dart';
 import 'package:projectfinal/core/server/api_url.dart';
 
+import '../../core/common/models/product_model.dart';
+
 class RemoteDataSource {
   final Api api = ApiImpl();
 

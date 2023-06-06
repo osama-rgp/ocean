@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projectfinal/features/login/login_remote_data_source.dart';
 import 'package:projectfinal/managers/assets.dart';
-import 'package:projectfinal/sin_up.dart';
+import 'package:projectfinal/features/sign_up/sin_up.dart';
 
 import '../home_page/home_page.dart';
 

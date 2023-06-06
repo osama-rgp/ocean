@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:projectfinal/core/models/product_model.dart';
 
+import '../../core/common/models/product_model.dart';
+
 class HomePageComponet extends StatelessWidget {
   final ProductModel product;
   const HomePageComponet({Key? key, required this.product}) : super(key: key);
@@ -21,7 +23,7 @@ class HomePageComponet extends StatelessWidget {
                 width: double.infinity,
                 height: 200,
                 child: Image.network(
-                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO-hlLa1mnf2V1p__dFMxkNjf44wHphOxH2g&usqp=CAU",
+                  product.image,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -34,10 +36,10 @@ class HomePageComponet extends StatelessWidget {
                       MainAxisAlignment.end,
                       crossAxisAlignment:
                       CrossAxisAlignment.center,
-                      children: const [
+                      children:  [
                         Text(
-                          "أسمنت أبيض",
-                          style: TextStyle(
+                         product.name,
+                          style: const TextStyle(
                               color: Colors.white),
                         )
                       ],
@@ -64,7 +66,7 @@ class HomePageComponet extends StatelessWidget {
                       MainAxisAlignment.start,
                       children: [
                         Text(
-                          "50000",
+                          "${product.price}",
                           style: TextStyle(
                               color: Colors.green,
                               fontSize: 25),

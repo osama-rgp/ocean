@@ -19,7 +19,7 @@ class MyAPP extends StatelessWidget{
         scaffoldBackgroundColor: ColorsManager.background
       ),
         debugShowCheckedModeBanner: false,
-        home: SingleProduct()
+        home:const HomePage()
     );
 
   }
