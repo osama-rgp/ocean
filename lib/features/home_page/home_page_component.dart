@@ -1,11 +1,10 @@
-
 import 'package:flutter/material.dart';
-import 'package:projectfinal/core/models/product_model.dart';
 
 import '../../core/common/models/product_model.dart';
 
 class HomePageComponet extends StatelessWidget {
   final ProductModel product;
+
   const HomePageComponet({Key? key, required this.product}) : super(key: key);
 
   @override
@@ -32,15 +31,12 @@ class HomePageComponet extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
-                      mainAxisAlignment:
-                      MainAxisAlignment.end,
-                      crossAxisAlignment:
-                      CrossAxisAlignment.center,
-                      children:  [
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
                         Text(
-                         product.name,
-                          style: const TextStyle(
-                              color: Colors.white),
+                          product.name,
+                          style: const TextStyle(color: Colors.white),
                         )
                       ],
                     ),
@@ -48,13 +44,11 @@ class HomePageComponet extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
-                      mainAxisAlignment:
-                      MainAxisAlignment.end,
-                      children: [
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: const [
                         Text(
                           "#الصنف",
-                          style: TextStyle(
-                              color: Colors.white),
+                          style: TextStyle(color: Colors.white),
                         ),
                       ],
                     ),
@@ -62,14 +56,12 @@ class HomePageComponet extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
-                      mainAxisAlignment:
-                      MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          "${product.price}",
-                          style: TextStyle(
-                              color: Colors.green,
-                              fontSize: 25),
+                          product.price,
+                          style: const TextStyle(
+                              color: Colors.green, fontSize: 25),
                         ),
                       ],
                     ),

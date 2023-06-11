@@ -1,11 +1,8 @@
-
-
-
 class CategoryModel {
-   final String id;
-   final String name;
+  final String id;
+  final String name;
 
-   const CategoryModel({
+  const CategoryModel({
     required this.id,
     required this.name,
   });

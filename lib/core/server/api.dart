@@ -6,7 +6,6 @@ import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:projectfinal/core/extension/request_type_extesion.dart';
 
-
 import '../common/enums/enums.dart';
 import '../logger/log.dart';
 import '../managers/durations/duration_manager.dart';

@@ -9,24 +9,24 @@ class ApiRequest extends Equatable {
 
   const ApiRequest({
     required this.url,
-     this.headers,
-     this.body,
-     this.params,
-     this.media,
+    this.headers,
+    this.body,
+    this.params,
+    this.media,
   });
 
   Future<Map<String, dynamic>> toMultiPart() async {
-    if(media==null){
+    if (media == null) {
       return {};
     }
-    final Map<String,dynamic> requestedMap ={};
-    for(int i =0;i<media!.file.length;i++){
-    final file = await MultipartFile.fromFile(
-      media!.file[i].path,
-    );
-     requestedMap.addAll({media!.keys[i]: file}) ;
+    final Map<String, dynamic> requestedMap = {};
+    for (int i = 0; i < media!.file.length; i++) {
+      final file = await MultipartFile.fromFile(
+        media!.file[i].path,
+      );
+      requestedMap.addAll({media!.keys[i]: file});
     }
-    requestedMap.addAll(params??{});
+    requestedMap.addAll(params ?? {});
     return requestedMap;
   }
 
@@ -43,18 +43,18 @@ class MediaOption extends Equatable {
     required this.file,
     required this.keys,
     required this.requestType,
-  }):assert(file.length==keys.length);
+  }) : assert(file.length == keys.length);
 
   @override
   List<Object> get props => [file, keys, requestType];
 
   @override
   String toString() {
-    String res ='';
-    for(int i =0;i<file.length;i++){
-      res+='${keys[i]}:${file[i].path}\n';
+    String res = '';
+    for (int i = 0; i < file.length; i++) {
+      res += '${keys[i]}:${file[i].path}\n';
     }
-    res+="\n//Request type//${requestType.toString()}";
+    res += "\n//Request type//${requestType.toString()}";
     return res;
   }
 }

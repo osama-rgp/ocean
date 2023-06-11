@@ -1,6 +1,4 @@
-
-class ProductModel{
-
+class ProductModel {
   final String id;
   final String name;
   final String price;
@@ -17,25 +15,15 @@ class ProductModel{
     required this.categoryId,
   });
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': this.id,
-      'name': this.name,
-      'price': this.price,
-      'description': this.description,
-      'image': this.image,
-      'categoryId': this.categoryId,
-    };
-  }
 
   factory ProductModel.fromMap(Map<String, dynamic> map) {
     return ProductModel(
-      id: map['id'] as String,
-      name: map['name'] as String,
-      price: map['price'] as String,
-      description: map['description'] as String,
-      image: map['image'] as String,
-      categoryId: map['category_id'] as String,
+      id: map['id'].toString(),
+      name: map['name'].toString(),
+      price: map['price'].toString(),
+      description: map['desc'].toString(),
+      image: map['image'].toString(),
+      categoryId: map['category_id'].toString(),
     );
   }
 }

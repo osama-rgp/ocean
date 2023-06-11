@@ -1,9 +1,6 @@
-
-
-
 import '../common/enums/enums.dart';
 
-extension RequestTypeEx on RequestType{
+extension RequestTypeEx on RequestType {
   String get type {
     switch (this) {
       case RequestType.GET:

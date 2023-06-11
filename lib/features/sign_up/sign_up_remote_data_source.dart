@@ -11,19 +11,24 @@ class SignupRemoteDataSource {
       required String address,
       required String password,
       required String phone}) async {
-    final request = ApiRequest(url: ApiUrl.register, params: {
-      "fname": fName,
-      "lname": lName,
-      "email": email,
-      "address": address,
-      "phone": phone,
-      "password": password,
-    });
+    try {
+      final request = ApiRequest(url: ApiUrl.register, params: {
+        "fname": fName,
+        "lname": lName,
+        "email": email,
+        "address": address,
+        "phone": phone,
+        "password": password,
+      });
 
-    final response = await api.post(request);
-    if(response.success){
-      return true;
+      final response = await api.post(request);
+      if (response.success) {
+        return true;
+      }
+      return false;
+    } catch (e) {
+      print(e);
+      return false;
     }
-    return false;
   }
 }

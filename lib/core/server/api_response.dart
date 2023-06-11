@@ -1,35 +1,38 @@
 part of 'api.dart';
 
-
 class ApiResponse extends Equatable {
   final Map? body;
   final int statusCode;
 
-  bool get success =>statusCode == 200&&body!=null;
+  bool get success => statusCode == 200 && body != null;
+
   const ApiResponse({
     this.body,
     required this.statusCode,
   });
 
-  bool get successInBody => body?['data']['success']??false;
+  bool get successInBody => body?['data']['success'] ?? false;
 
-  factory ApiResponse.fromResponse(Response response){
+  factory ApiResponse.fromResponse(Response response) {
     String bodyString = jsonEncode(response.data);
     var decodedBody = jsonDecode(bodyString);
-    final Map body = decodedBody is Map ?decodedBody : {};
-    return ApiResponse(statusCode: response.statusCode ?? 0, body: body,);
+    final Map body = decodedBody is Map ? decodedBody : {};
+    return ApiResponse(
+      statusCode: response.statusCode ?? 0,
+      body: body,
+    );
   }
 
-  Response toResponse(){
-    return Response(requestOptions: RequestOptions(headers: {}),
-    data: body,
+  Response toResponse() {
+    return Response(
+      requestOptions: RequestOptions(headers: {}),
+      data: body,
       statusCode: statusCode,
     );
   }
 
   @override
-  List<Object?> get props => [body,statusCode];
-
+  List<Object?> get props => [body, statusCode];
 
   @override
   String toString() {

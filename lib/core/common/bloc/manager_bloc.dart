@@ -1,10 +1,8 @@
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../managers/constant/cash_keys_constant.dart';
-
 
 part 'manager_event.dart';
 
@@ -15,11 +13,11 @@ class ManagerBloc extends Bloc<ManagerEvent, ManagerState> {
     on<ManagerEvent>((event, emit) async {
       switch (event.runtimeType) {
         case LogoutEvent:
-          logout(event ,emit);
+          logout(event, emit);
           break;
         case SetTokenAndUserId:
-          await setIdAndTokenId(event,emit);
-           break;
+          await setIdAndTokenId(event, emit);
+          break;
         case InitialEvent:
           await initial(event, emit);
           break;
@@ -35,14 +33,15 @@ class ManagerBloc extends Bloc<ManagerEvent, ManagerState> {
     emit(state.copyWith(accessToken: token, userId: userId));
   }
 
-  Future<void> setIdAndTokenId(ManagerEvent event, Emitter<ManagerState> emit) async {
+  Future<void> setIdAndTokenId(
+      ManagerEvent event, Emitter<ManagerState> emit) async {
     event as SetTokenAndUserId;
     emit(state.copyWith(
       userId: event.userId,
       accessToken: event.token,
     ));
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-   await sharedPreferences.setString(CashKeys.token, event.token);
+    await sharedPreferences.setString(CashKeys.token, event.token);
     await sharedPreferences.setString(CashKeys.userId, event.userId);
   }
 

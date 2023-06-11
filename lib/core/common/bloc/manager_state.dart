@@ -12,11 +12,11 @@ class ManagerState extends Equatable {
     bool reset = false,
   }) {
     return ManagerState(
-      accessToken:reset?null: accessToken ?? this.accessToken,
-      userId: reset?null:userId ?? this.userId,
+      accessToken: reset ? null : accessToken ?? this.accessToken,
+      userId: reset ? null : userId ?? this.userId,
     );
   }
 
   @override
-  List<Object?> get props => [accessToken,userId];
+  List<Object?> get props => [accessToken, userId];
 }
