@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projectfinal/managers/assets.dart';
 
 import '../../core/common/models/product_model.dart';
 
@@ -21,9 +22,18 @@ class HomePageComponet extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 height: 200,
-                child: Image.network(
-                  product.image,
-                  fit: BoxFit.cover,
+                child: FadeInImage(
+                  placeholder: const AssetImage(
+                    AssetsManager.logo
+                  ),
+                    fit: BoxFit.fill,
+                  imageErrorBuilder: (c,_,__)=>Image.asset(
+                    AssetsManager.placeHolder,
+                    fit: BoxFit.cover,
+                  ),
+                  image: NetworkImage(
+                    product.image,
+                  ),
                 ),
               ),
               Column(
